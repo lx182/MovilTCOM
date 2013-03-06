@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        
+        <title>LOGIN</title>
+        <script type="text/javascript" charset="utf-8" src="cordova-2.3.0.js"></script>
+        <script src="jquery-1.9.0.js" type="text/javascript" charset="utf-8"></script>
+        <script src="jquery.mobile-1.2.0.js" type="text/javascript" charset="utf-8"></script>
+        <link rel="stylesheet"  href="css/themes/default/jquery.mobile-1.2.0.css" />
+             <link rel="stylesheet" href="themes/Tierra_Verde.css" />
+        <link rel="stylesheet"  href="estilo.css" />
+        <link rel="stylesheet" href="docs/_assets/css/jqm-docs.css" />
+	    <script src="js/jquery.js"></script>
+	    <script src="docs/_assets/js/jqm-docs.js"></script>
+        <script src="js/jquery.mobile-1.2.0.js"></script>
+<script>
+
+
+    function logIcon(confirmar) {
+        $.mobile.loading('show', {
+            text: 'Inciando sesión ...',
+            textVisible: confirmar,
+            theme: 'c',
+            html: ""
+        });
+
+    }
+
+    $(function () {
+
+        
+        $("#login").submit(function () {
+
+            logIcon("true");
+            $.post('http://agenciaunica.com/tcom/server.php/usuarios/idUsuario_nombreUsuario', $("#login").serialize(), function (response) {
+                //Guardar resultado de servidor (id o false)
+
+                if (response == false) {
+                    alert("Error usuario o contraseña erroneos");
+                    logIcon("false");
+                }
+                else {
+
+                    window.localStorage.setItem("id", response[0].idUsuario);
+                    window.localStorage.setItem("tipo", response[0].tipoUsuario);
+                    window.localStorage.setItem("nombre", response[0].usuario);
+                    
+                    window.location = "inicio.html";
+                }
+
+
+            }, 'json');
+
+
+
+            return false;
+        });
+    });
+</script>
+    </head>
+    <body>
+    <div class="content-secondary">
+    <form id="login" method="post">
+        <ul data-role="listview" data-inset="false" data-theme="c" data-dividertheme="f">
+            <br>
+            <center><img src="imagenes/logo.png" alt="Tierra Verde" width="100%"></center>
+        <br>
+        <li data-role="list-divider" class="dividir">Introduce tus datos</li>
+        <li><label>Correo </label>
+        <input type="email" id="correo" name="correo" placeholder="Correo"/></li>
+        
+        <li><label for="contrasenia">Contraseña </label>
+        <input type="password" id="contrasenia" name="contrasenia" placeholder="Contraseña"/></li>
+        
+       <li><input type="submit" value="Entrar" /></li>
+            
+           
+
+            </ul>
+    </form>
+
+</div>
+       
+</body>
+</html>

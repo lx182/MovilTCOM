@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>inicio</title>
+
+<script type="text/javascript" charset="utf-8" src="cordova-2.3.0.js"></script>
+<script src="jquery-1.9.0.js" type="text/javascript" charset="utf-8"></script>
+<script src="jquery.mobile-1.2.0.js" type="text/javascript"
+	charset="utf-8"></script>
+<link rel="stylesheet" href="css/themes/default/jquery.mobile-1.2.0.css" />
+<link rel="stylesheet" href="themes/Tierra_Verde.css" />
+
+<link rel="stylesheet" href="estilo.css" />
+<script src="js/jquery.js"></script>
+<script src="docs/_assets/js/jqm-docs.js"></script>
+<script src="js/jquery.mobile-1.2.0.js"></script>
+<script>
+
+$.mobile.ajaxLinksEnabled = false;
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        document.addEventListener("backbutton", onBackKeyDown, false);
+    }
+    function onBackKeyDown() {
+
+    }
+    $(function () {
+
+    	
+        var id = window.localStorage.getItem("id");
+        var tipo = window.localStorage.getItem("tipo");
+        var nombre = window.localStorage.getItem("nombre");
+
+        if (id === null) {
+            alert("Por favor inicia sesion!!!");
+            window.location = "index.html";
+        }
+
+        $('<span />').html("Bienvenido " + nombre).appendTo('#encabezado');
+
+        $("#btn_cerrar").click(function(){
+            window.localStorage.clear();
+            window.location=$(this).attr("href");
+            return false;
+        });        
+        
+
+    });
+
+        </script>
+</head>
+<body>
+
+	<div data-role="header" role="banner" data-theme="a">
+		<a href="index.html" data-icon="arrow-l" id="btn_cerrar" data-ajax="false">Cerrar sesión</a>
+		<p id="encabezado" style="width: auto;">
+			<br>
+			<br>
+		</p>
+		<a href="inicio.html" data-icon="home" data-iconpos="notext">Inicio</a>
+	</div>
+	<div data-role="collapsible-set" data-inset="false">
+
+		<div class="botones" data-role="collapsible" data-theme="a"
+			data-iconpos="right">
+			<h3>
+				. <img src="imagenes/eventos.png"> Eventos
+			</h3>
+			<ul data-role="listview">
+				<li><a href="consultar.html">Internos</a></li>
+				<li><a href="consultar.html">Externos</a></li>
+				<li><a href="consultar.html">Asambleas</a></li>
+				<li><a href="consultar.html">Días</a></li>
+				<li><a href="consultar.html">Publicar</a></li>
+			</ul>
+		</div>
+
+		<div class="botones" data-role="collapsible" data-theme="a"
+			data-iconpos="right">
+			<h3>
+				. <img src="imagenes/reservaciones.png"> Reservaciones
+			</h3>
+			<ul data-role="listview">
+				<li><a href="consultar.html">Solicitudes</a></li>
+				<li><a href="consultar.html">Consultar</a></li>
+			</ul>
+		</div>
+
+		<div class="botones" data-role="collapsible" data-theme="a"
+			data-iconpos="right">
+			<h3>
+				. <img src="imagenes/condominio.png"> Registro de unidades
+				móviles
+			</h3>
+			<ul data-role="listview">
+				<li><a href="consultar.html">Inquilinos</a></li>
+				<li><a href="doc/administracion.html" class="link" data-ajax="false">Propiedades</a></li>
+				<li><a href="consultar.html">Números frecuentes</a></li>
+			</ul>
+		</div>
+
+		<div class="botones" data-role="collapsible" data-theme="a"
+			data-iconpos="right">
+			<h3>
+				. <img src="imagenes/consulta.png"> Consulta
+			</h3>
+			<ul data-role="listview">
+				<li><a href="consultar.html">Empleados</a></li>
+				<li><a href="consultar.html">Espacios</a></li>
+				<li><a href="consultar.html">Edo. de cuenta</a></li>
+			</ul>
+		</div>
+
+
+
+	</div>
+	<div data-role="footer" data-theme="c" data-iconpos="right">
+		<p class="jqm-version">(2013) Todos los derechos reservados</p>
+		<p>TESCONmedia & ARQmedia Studio S.A. de C.V.</p>
+	</div>
+
+
+</body>
+</html>
